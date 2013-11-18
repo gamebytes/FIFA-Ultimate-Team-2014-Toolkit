@@ -37,7 +37,7 @@ namespace UltimateTeam.Toolkit.Requests
 
         internal IHttpClient HttpClient
         {
-            get { return _httpClient ?? (_httpClient = new HttpClientWrapper()); }
+            get { return _httpClient; }
             set
             {
                 value.ThrowIfNullArgument();
@@ -48,7 +48,6 @@ namespace UltimateTeam.Toolkit.Requests
         protected FutRequestBase()
         {
             JsonConvert.DefaultSettings = () => new JsonSerializerSettings { MissingMemberHandling = MissingMemberHandling.Error };
-            HttpClient.SetExpectContinueHeaderToFalse();
         }
 
         protected void AddCommonHeaders()
